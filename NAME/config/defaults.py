@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import GPUtil
+import yapecs
 
 
 ###############################################################################
@@ -24,26 +25,46 @@ DATASETS = []
 # Datasets for evaluation
 EVALUATION_DATASETS = DATASETS
 
+# Cache metadata for datasets
+MEMORY_CACHING = True
+
 
 ###############################################################################
 # Directories
 ###############################################################################
 
+# Root location for output (e.g. runs, data)
+ROOT_DIR = Path(__file__).parent.parent.parent
 
 # Location to save assets to be bundled with pip release
-ASSETS_DIR = Path(__file__).parent.parent / 'assets'
+@yapecs.ComputedProperty(compute_once=True)
+def ASSETS_DIR():
+    import NAME
+    return NAME.ROOT_DIR / 'NAME' / 'assets'
 
 # Location of preprocessed features
-CACHE_DIR = Path(__file__).parent.parent.parent / 'data' / 'cache'
+@yapecs.ComputedProperty(compute_once=True)
+def CACHE_DIR():
+    import NAME
+    return NAME.ROOT_DIR / 'data' / 'cache'
 
 # Location of datasets on disk
-DATA_DIR = Path(__file__).parent.parent.parent / 'data' / 'datasets'
+@yapecs.ComputedProperty(compute_once=True)
+def DATA_DIR():
+    import NAME
+    return NAME.ROOT_DIR / 'data' / 'datasets'
 
 # Location to save evaluation artifacts
-EVAL_DIR = Path(__file__).parent.parent.parent / 'eval'
+@yapecs.ComputedProperty(compute_once=True)
+def EVAL_DIR():
+    import NAME
+    return NAME.ROOT_DIR / 'eval'
 
 # Location to save training and adaptation artifacts
-RUNS_DIR = Path(__file__).parent.parent.parent / 'runs'
+@yapecs.ComputedProperty(compute_once=True)
+def RUNS_DIR():
+    import NAME
+    return NAME.ROOT_DIR / 'runs'
 
 
 ###############################################################################

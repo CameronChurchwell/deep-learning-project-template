@@ -20,7 +20,7 @@ def main(config, dataset):
     shutil.copyfile(config, directory / config.name)
 
     # Train
-    NAME.train(dataset, directory)
+    NAME.train.train(dataset, directory)
 
 
 def parse_args():

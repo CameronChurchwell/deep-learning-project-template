@@ -1,6 +1,6 @@
 import functools
 
-import accelerate
+# import accelerate
 import GPUtil
 import torch
 import torchutil
@@ -63,12 +63,13 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
     # Device placement #
     ####################
 
-    accelerator = accelerate.Accelerator(mixed_precision='fp16')
-    model, optimizer, train_loader, valid_loader = accelerator.prepare(
-        model,
-        optimizer,
-        train_loader,
-        valid_loader)
+    # uncomment to use accelerate
+    # accelerator = accelerate.Accelerator(mixed_precision='fp16')
+    # model, optimizer, train_loader, valid_loader = accelerator.prepare(
+    #     model,
+    #     optimizer,
+    #     train_loader,
+    #     valid_loader)
 
     #########
     # Train #
@@ -116,6 +117,9 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
             ############
 
             if step % NAME.EVALUATION_INTERVAL == 0:
+                # Raise if GPU tempurature exceeds 90 C
+                if any(gpu.temperature > 90. for gpu in GPUtil.getGPUs()):
+                    raise RuntimeError(f'GPU is overheating. Terminating training.')
                 with NAME.inference_context(model):
                     evaluation_steps = (
                         None if step == NAME.STEPS
@@ -125,7 +129,7 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
                         directory,
                         step,
                         model,
-                        accelerator,
+                        #accelerator,
                         evaluation_steps=evaluation_steps)
                     evaluate_fn('train', train_loader)
                     evaluate_fn('valid', valid_loader)
@@ -139,7 +143,7 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
                     directory / f'{step:08d}.pt',
                     model,
                     optimizer,
-                    accelerator=accelerator,
+                    #accelerator=accelerator,
                     step=step,
                     epoch=epoch)
 
@@ -150,10 +154,6 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
             # Finished training
             if step >= NAME.STEPS:
                 break
-
-            # Raise if GPU tempurature exceeds 80 C
-            if any(gpu.temperature > 80. for gpu in GPUtil.getGPUs()):
-                raise RuntimeError(f'GPU is overheating. Terminating training.')
 
             ###########
             # Updates #
@@ -176,7 +176,7 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
         directory / f'{step:08d}.pt',
         model,
         optimizer,
-        accelerator=accelerator,
+        #accelerator=accelerator,
         step=step,
         epoch=epoch)
 

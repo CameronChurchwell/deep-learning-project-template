@@ -1,0 +1,38 @@
+[build-system]
+requires = [
+    "setuptools>=61.0,<70",
+    # "numpy",
+    # "pybind11",
+    # "torch"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "NAME"
+version = "0.0.0"
+authors = [
+  { name="First Author", email="firstauthor@gmail.com" },
+#   { name="Second Author", email="secondauthor@gmail.com" },
+]
+description = "DESCRIPTION"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    'GPUtil', 'torch', 'torchaudio', 'torchutil', 'yapecs'
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License"
+]
+license = {text = "MIT License"}
+keywords = []
+
+[project.urls]
+Homepage = "https://github.com/USERNAME/NAME"
+Issues = "https://github.com/USERNAME/NAME/issues"
+
+# [project.optional-dependencies]
+# evaluate = [
+# ]
+
+[tool.setuptools.package-data]
+NAME = ["assets/*", "assets/*/*"]
