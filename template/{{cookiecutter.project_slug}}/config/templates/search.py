@@ -1,8 +1,8 @@
 from pathlib import Path
 import yapecs
-import NAME
+import {{cookiecutter.project_slug}}
 
-MODULE = 'NAME'
+MODULE = '{{cookiecutter.project_slug}}'
 
 file = Path(__file__)
 stem = file.stem
@@ -12,14 +12,14 @@ CONFIG = stem
 # uncomment to use a separate runs dir
 # @yapecs.ComputedProperty(compute_once=True)
 # def RUNS_DIR():
-#     return NAME.ROOT_DIR / f'runs.{stem}'
+#     return {{cookiecutter.project_slug}}.ROOT_DIR / f'runs.{stem}'
 
 #uncomment to use a separate eval dir
 # @yapecs.ComputedProperty(compute_once=True)
 # def EVAL_DIR():
-#     return NAME.ROOT_DIR / f'eval.{stem}'
+#     return {{cookiecutter.project_slug}}.ROOT_DIR / f'eval.{stem}'
 
-if hasattr(NAME, 'defaults'):
+if hasattr({{cookiecutter.project_slug}}, 'defaults'):
 
     # # Helper function for formatting floats nicely
     # def format_float(f):

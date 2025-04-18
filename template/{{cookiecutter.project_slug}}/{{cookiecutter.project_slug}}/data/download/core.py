@@ -1,6 +1,6 @@
 import torchutil
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -9,7 +9,7 @@ import NAME
 
 
 @torchutil.notify('download')
-def datasets(datasets=NAME.DATASETS):
+def datasets(datasets={{cookiecutter.project_slug}}.DATASETS):
     """Download datasets"""
     # TODO - download datasets
     pass

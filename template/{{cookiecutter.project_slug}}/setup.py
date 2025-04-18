@@ -15,7 +15,7 @@ from setuptools import find_packages, setup
 # import glob
 # import warnings
 
-# library_name = "NAME"
+# library_name = "{{cookiecutter.project_slug}}"
 
 # if torch.__version__ >= "2.6.0":
 #     py_limited_api = True
@@ -32,7 +32,7 @@ from setuptools import find_packages, setup
 #     extension = CUDAExtension if use_cuda else CppExtension
 
 #     if use_cuda:
-#         warnings.warn(f"Building NAME with CUDA using CUDA_HOME={CUDA_HOME}")
+#         warnings.warn(f"Building {{cookiecutter.project_slug}} with CUDA using CUDA_HOME={CUDA_HOME}")
 
 #     windows = platform.system() == "Windows"
 #     macos = platform.system() == "Darwin"
@@ -105,6 +105,6 @@ setup(
     packages=find_packages(),
     # ext_modules=get_extensions(),
     # cmdclass={'build_ext': BuildExtension},
-    # include_dirs=[np.get_include(), 'NAME'],
+    # include_dirs=[np.get_include(), '{{cookiecutter.project_slug}}'],
     # options={"bdist_wheel": {"py_limited_api": "cp39"}} if py_limited_api else {},
 )

@@ -1,6 +1,6 @@
 import torchutil
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -35,4 +35,4 @@ class Metrics:
 class Loss(torchutil.metrics.Average):
     """Batch-updating loss"""
     def update(self, predicted, target):
-        super().update(NAME.loss(predicted, target), target.numel())
+        super().update({{cookiecutter.project_slug}}.loss(predicted, target), target.numel())

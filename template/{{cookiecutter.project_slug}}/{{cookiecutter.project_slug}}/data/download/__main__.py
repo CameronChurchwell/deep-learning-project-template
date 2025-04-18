@@ -1,6 +1,6 @@
 import yapecs
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -13,10 +13,10 @@ def parse_args():
     parser = yapecs.ArgumentParser(description='Download datasets')
     parser.add_argument(
         '--datasets',
-        default=NAME.DATASETS,
+        default={{cookiecutter.project_slug}}.DATASETS,
         nargs='+',
         help='The datasets to download')
     return parser.parse_args()
 
 
-NAME.data.download.datasets(**vars(parse_args()))
+{{cookiecutter.project_slug}}.data.download.datasets(**vars(parse_args()))

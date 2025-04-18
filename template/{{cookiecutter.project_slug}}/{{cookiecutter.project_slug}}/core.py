@@ -2,11 +2,11 @@ import contextlib
 
 import torch
 import torchutil
-# import torchaudio
+{{"import torchaudio" if cookiecutter.audio == 'yes' else ""}}
 
 from typing import Union
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -14,7 +14,7 @@ import NAME
 ###############################################################################
 
 
-def run(x, checkpoint=NAME.DEFAULT_CHECKPOINT, gpu=None):
+def run(x, checkpoint={{cookiecutter.project_slug}}.DEFAULT_CHECKPOINT, gpu=None):
     """
 
     Arguments
@@ -44,7 +44,7 @@ def run(x, checkpoint=NAME.DEFAULT_CHECKPOINT, gpu=None):
 
 def from_file(
     input_file,
-    checkpoint=NAME.DEFAULT_CHECKPOINT,
+    checkpoint={{cookiecutter.project_slug}}.DEFAULT_CHECKPOINT,
     gpu=None):
     """Load from file and process
 
@@ -70,7 +70,7 @@ def from_file(
 def from_file_to_file(
     input_file,
     output_file,
-    checkpoint=NAME.DEFAULT_CHECKPOINT,
+    checkpoint={{cookiecutter.project_slug}}.DEFAULT_CHECKPOINT,
     gpu=None):
     """Process file and save to disk
 
@@ -94,7 +94,7 @@ def from_file_to_file(
 def from_files_to_files(
     input_files,
     output_files,
-    checkpoint=NAME.DEFAULT_CHECKPOINT,
+    checkpoint={{cookiecutter.project_slug}}.DEFAULT_CHECKPOINT,
     gpu=None):
     """Process many files and save to disk
 
@@ -110,7 +110,7 @@ def from_files_to_files(
     """
     for input_file, output_file in torchutil.iterator(
         zip(input_files, output_files),
-        NAME.CONFIG,
+        {{cookiecutter.project_slug}}.CONFIG,
         total=len(input_files)
     ):
         from_file_to_file(input_file, output_file, checkpoint, gpu)
@@ -129,7 +129,7 @@ def preprocess(x):
     return features
 
 
-def infer(features, checkpoint=NAME.DEFAULT_CHECKPOINT):
+def infer(features, checkpoint={{cookiecutter.project_slug}}.DEFAULT_CHECKPOINT):
     """Model forward pass"""
     # Maybe cache model
     if (
@@ -138,7 +138,7 @@ def infer(features, checkpoint=NAME.DEFAULT_CHECKPOINT):
         infer.device != features.device
     ):
         # Initialize model
-        model = NAME.Model()
+        model = {{cookiecutter.project_slug}}.Model()
 
         # Load from disk
         infer.model, *_ = torchutil.checkpoint.load(checkpoint, model)
@@ -184,7 +184,7 @@ def inference_context(model):
 # def resample(
 #     audio: torch.Tensor,
 #     sample_rate: Union[int, float],
-#     target_rate: Union[int, float] = NAME.SAMPLE_RATE):
+#     target_rate: Union[int, float] = {{cookiecutter.project_slug}}.SAMPLE_RATE):
 #     """Perform audio resampling"""
 #     if sample_rate == target_rate:
 #         return audio

@@ -1,6 +1,6 @@
 import torchutil
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -17,8 +17,8 @@ def datasets(datasets):
             The name of the dataset to preprocess
     """
     for dataset in datasets:
-        input_directory = NAME.DATA_DIR / dataset
-        output_directory = NAME.CACHE_DIR / dataset
+        input_directory = {{cookiecutter.project_slug}}.DATA_DIR / dataset
+        output_directory = {{cookiecutter.project_slug}}.CACHE_DIR / dataset
 
         # TODO - Perform preprocessing
         raise NotImplementedError

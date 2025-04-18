@@ -1,5 +1,5 @@
 from pathlib import Path
 
-MODULE = 'NAME'
+MODULE = '{{cookiecutter.project_slug}}'
 
 CONFIG = Path(__file__).stem

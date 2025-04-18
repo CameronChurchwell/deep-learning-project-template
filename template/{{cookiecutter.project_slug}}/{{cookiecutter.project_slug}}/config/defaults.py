@@ -11,7 +11,7 @@ import yapecs
 
 
 # Configuration name
-CONFIG = 'NAME'
+CONFIG = '{{cookiecutter.project_slug}}'
 
 
 ###############################################################################
@@ -39,32 +39,32 @@ ROOT_DIR = Path(__file__).parent.parent.parent
 # Location to save assets to be bundled with pip release
 @yapecs.ComputedProperty(compute_once=True)
 def ASSETS_DIR():
-    import NAME
-    return NAME.ROOT_DIR / 'NAME' / 'assets'
+    import {{cookiecutter.project_slug}}
+    return {{cookiecutter.project_slug}}.ROOT_DIR / '{{cookiecutter.project_slug}}' / 'assets'
 
 # Location of preprocessed features
 @yapecs.ComputedProperty(compute_once=True)
 def CACHE_DIR():
-    import NAME
-    return NAME.ROOT_DIR / 'data' / 'cache'
+    import {{cookiecutter.project_slug}}
+    return {{cookiecutter.project_slug}}.ROOT_DIR / 'data' / 'cache'
 
 # Location of datasets on disk
 @yapecs.ComputedProperty(compute_once=True)
 def DATA_DIR():
-    import NAME
-    return NAME.ROOT_DIR / 'data' / 'datasets'
+    import {{cookiecutter.project_slug}}
+    return {{cookiecutter.project_slug}}.ROOT_DIR / 'data' / 'datasets'
 
 # Location to save evaluation artifacts
 @yapecs.ComputedProperty(compute_once=True)
 def EVAL_DIR():
-    import NAME
-    return NAME.ROOT_DIR / 'eval'
+    import {{cookiecutter.project_slug}}
+    return {{cookiecutter.project_slug}}.ROOT_DIR / 'eval'
 
 # Location to save training and adaptation artifacts
 @yapecs.ComputedProperty(compute_once=True)
 def RUNS_DIR():
-    import NAME
-    return NAME.ROOT_DIR / 'runs'
+    import {{cookiecutter.project_slug}}
+    return {{cookiecutter.project_slug}}.ROOT_DIR / 'runs'
 
 
 ###############################################################################

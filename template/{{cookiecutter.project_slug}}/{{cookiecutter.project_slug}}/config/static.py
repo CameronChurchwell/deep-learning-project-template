@@ -1,5 +1,5 @@
 """Config parameters whose values depend on other config parameters"""
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -8,10 +8,10 @@ import NAME
 
 
 # Location to save dataset partitions
-PARTITION_DIR = NAME.ASSETS_DIR / 'partitions'
+PARTITION_DIR = {{cookiecutter.project_slug}}.ASSETS_DIR / 'partitions'
 
 # Default checkpoint for generation
-DEFAULT_CHECKPOINT = NAME.ASSETS_DIR / 'checkpoints'
+DEFAULT_CHECKPOINT = {{cookiecutter.project_slug}}.ASSETS_DIR / 'checkpoints'
 
 # Default configuration file
-DEFAULT_CONFIGURATION = NAME.ASSETS_DIR / 'configs' / 'NAME.py'
+DEFAULT_CONFIGURATION = {{cookiecutter.project_slug}}.ASSETS_DIR / 'configs' / '{{cookiecutter.project_slug}}.py'

@@ -8,8 +8,8 @@ from .config import defaults
 
 # Modify configuration
 import yapecs
-yapecs.configure('NAME', defaults)
-del defaults # use NAME.defaults as a lock for grid search
+yapecs.configure('{{cookiecutter.project_slug}}', defaults)
+del defaults # use {{cookiecutter.project_slug}}.defaults as a lock for grid search
 
 # Import configuration parameters
 from .config.defaults import *

@@ -5,7 +5,7 @@ import GPUtil
 import torch
 import torchutil
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -14,7 +14,7 @@ import NAME
 
 
 @torchutil.notify('train')
-def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
+def train(datasets, directory={{cookiecutter.project_slug}}.RUNS_DIR / {{cookiecutter.project_slug}}.CONFIG):
     """Train a model"""
     # Create output directory
     directory.mkdir(parents=True, exist_ok=True)
@@ -23,15 +23,15 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
     # Create data loaders #
     #######################
 
-    torch.manual_seed(NAME.RANDOM_SEED)
-    train_loader = NAME.data.loader(datasets, 'train')
-    valid_loader = NAME.data.loader(datasets, 'valid')
+    torch.manual_seed({{cookiecutter.project_slug}}.RANDOM_SEED)
+    train_loader = {{cookiecutter.project_slug}}.data.loader(datasets, 'train')
+    valid_loader = {{cookiecutter.project_slug}}.data.loader(datasets, 'valid')
 
     #################
     # Create models #
     #################
 
-    model = NAME.Model()
+    model = {{cookiecutter.project_slug}}.Model()
 
     ####################
     # Create optimizer #
@@ -77,12 +77,12 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
 
     # Setup progress bar
     progress = torchutil.iterator(
-        range(step, NAME.STEPS),
-        f'Training {NAME.CONFIG}',
+        range(step, {{cookiecutter.project_slug}}.STEPS),
+        f'Training {{{cookiecutter.project_slug}}.CONFIG}',
         step,
-        NAME.STEPS)
+        {{cookiecutter.project_slug}}.STEPS)
 
-    while step < NAME.STEPS:
+    while step < {{cookiecutter.project_slug}}.STEPS:
 
         for batch in train_loader:
 
@@ -116,14 +116,14 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
             # Evaluate #
             ############
 
-            if step % NAME.EVALUATION_INTERVAL == 0:
+            if step % {{cookiecutter.project_slug}}.EVALUATION_INTERVAL == 0:
                 # Raise if GPU tempurature exceeds 90 C
                 if any(gpu.temperature > 90. for gpu in GPUtil.getGPUs()):
                     raise RuntimeError(f'GPU is overheating. Terminating training.')
-                with NAME.inference_context(model):
+                with {{cookiecutter.project_slug}}.inference_context(model):
                     evaluation_steps = (
-                        None if step == NAME.STEPS
-                        else NAME.DEFAULT_EVALUATION_STEPS)
+                        None if step == {{cookiecutter.project_slug}}.STEPS
+                        else {{cookiecutter.project_slug}}.DEFAULT_EVALUATION_STEPS)
                     evaluate_fn = functools.partial(
                         evaluate,
                         directory,
@@ -138,7 +138,7 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
             # Save checkpoint #
             ###################
 
-            if step and step % NAME.CHECKPOINT_INTERVAL == 0:
+            if step and step % {{cookiecutter.project_slug}}.CHECKPOINT_INTERVAL == 0:
                 torchutil.checkpoint.save(
                     directory / f'{step:08d}.pt',
                     model,
@@ -152,7 +152,7 @@ def train(datasets, directory=NAME.RUNS_DIR / NAME.CONFIG):
             ########################
 
             # Finished training
-            if step >= NAME.STEPS:
+            if step >= {{cookiecutter.project_slug}}.STEPS:
                 break
 
             ###########
@@ -197,7 +197,7 @@ def evaluate(
 ):
     """Perform model evaluation"""
     # Setup evaluation metrics
-    metrics = NAME.evaluate.Metrics()
+    metrics = {{cookiecutter.project_slug}}.evaluate.Metrics()
 
     for i, batch in enumerate(loader):
 

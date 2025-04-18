@@ -1,6 +1,6 @@
 import yapecs
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 def parse_args():
@@ -8,10 +8,10 @@ def parse_args():
     parser = yapecs.ArgumentParser(description='Partition datasets')
     parser.add_argument(
         '--datasets',
-        default=NAME.DATASETS,
+        default={{cookiecutter.project_slug}}.DATASETS,
         nargs='+',
         help='The datasets to partition')
     return parser.parse_args()
 
 
-NAME.partition.datasets(**vars(parse_args()))
+{{cookiecutter.project_slug}}.partition.datasets(**vars(parse_args()))

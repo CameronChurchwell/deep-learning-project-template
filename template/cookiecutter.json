@@ -1,3 +1,8 @@
 {
-    "project_slug": "NAME"
+    "project_slug": "NAME",
+    "github_username": "CameronChurchwell",
+    "github_repo_name": "{{ cookiecutter.project_slug }}",
+    "author_name": "Cameron Churchwell",
+    "author_email": "cameronchurchwell@icloud.com",
+    "audio": ["yes", "no"]
 }

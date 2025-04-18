@@ -1,9 +1,9 @@
 import json
 from pathlib import Path
 import torch
-import torchaudio
+{{"import torchaudio" if cookiecutter.audio == 'yes' else ""}}
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 ###############################################################################
 # Download Utilities
@@ -11,7 +11,7 @@ import NAME
 
 def partition(dataset):
     """Load partitions for dataset"""
-    with open(NAME.PARTITION_DIR / f'{dataset}.json') as file:
+    with open({{cookiecutter.project_slug}}.PARTITION_DIR / f'{dataset}.json') as file:
         return json.load(file)
 
 def audio(file):
@@ -27,7 +27,7 @@ def audio(file):
         audio, sample_rate = torchaudio.load(file)
 
     # Maybe resample
-    return NAME.resample(audio, sample_rate)
+    return {{cookiecutter.project_slug}}.resample(audio, sample_rate)
 
 class Model(torch.nn.Module):
     """Model definition"""

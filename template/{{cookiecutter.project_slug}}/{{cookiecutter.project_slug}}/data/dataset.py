@@ -5,9 +5,9 @@ from pathlib import Path
 # import accelerate
 import numpy as np
 import torch
-import torchaudio
+{{"import torchaudio" if cookiecutter.audio == 'yes' else ""}}
 
-import NAME
+import {{cookiecutter.project_slug}}
 
 
 ###############################################################################
@@ -22,7 +22,7 @@ class Dataset(torch.utils.data.Dataset):
         name_or_files,
         partition=None,
         features=['audio'],
-        memory_caching=NAME.MEMORY_CACHING):
+        memory_caching={{cookiecutter.project_slug}}.MEMORY_CACHING):
         self.features = features
         self.metadata = Metadata(
             name_or_files,
@@ -53,7 +53,7 @@ class Dataset(torch.utils.data.Dataset):
 
             # Load audio
             if feature == 'audio':
-                audio = NAME.load.audio(self.audio_files[index])
+                audio = {{cookiecutter.project_slug}}.load.audio(self.audio_files[index])
                 feature_values.append(audio)
 
             # Add stem
@@ -85,7 +85,7 @@ class Dataset(torch.utils.data.Dataset):
     def buckets(self):
         """Partition indices into buckets based on length for sampling"""
         # Get the size of a bucket
-        size = len(self) // NAME.BUCKETS
+        size = len(self) // {{cookiecutter.project_slug}}.BUCKETS
 
         # Get indices in order of length
         indices = np.argsort(self.lengths)
@@ -97,7 +97,7 @@ class Dataset(torch.utils.data.Dataset):
             for i in range(0, len(self), size)]
 
         # Concatenate partial bucket
-        if len(buckets) == NAME.BUCKETS + 1:
+        if len(buckets) == {{cookiecutter.project_slug}}.BUCKETS + 1:
             residual = buckets.pop()
             buckets[-1] = np.concatenate((buckets[-1], residual), axis=0)
 
@@ -122,14 +122,14 @@ class Metadata:
         # Create dataset from string identifier
         if isinstance(name_or_files, str):
             self.name = name_or_files
-            self.data_dir = NAME.DATA_DIR / self.name
-            self.cache_dir = NAME.CACHE_DIR / self.name
+            self.data_dir = {{cookiecutter.project_slug}}.DATA_DIR / self.name
+            self.cache_dir = {{cookiecutter.project_slug}}.CACHE_DIR / self.name
 
             if not self.cache_dir.exists():
                 self.cache_dir.mkdir()
 
             # Get stems corresponding to partition
-            partition_dict = NAME.load.partition(self.name)
+            partition_dict = {{cookiecutter.project_slug}}.load.partition(self.name)
             if partition is not None:
                 self.stems = partition_dict[partition]
                 lengths_file = self.cache_dir / f'{partition}-lengths.json'
@@ -165,8 +165,8 @@ class Metadata:
             for stem, audio_file in zip(self.stems, self.audio_files):
                 info = torchaudio.info(audio_file)
                 length = int(
-                    info.num_frames * (NAME.SAMPLE_RATE / info.sample_rate)
-                ) // NAME.HOPSIZE
+                    info.num_frames * ({{cookiecutter.project_slug}}.SAMPLE_RATE / info.sample_rate)
+                ) // {{cookiecutter.project_slug}}.HOPSIZE
 
                 lengths[stem] = length
 

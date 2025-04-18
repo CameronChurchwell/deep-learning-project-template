@@ -4,11 +4,11 @@
 # $1 - index of GPU to use
 
 # Download datasets
-python -m NAME.data.download
+python -m {{cookiecutter.project_slug}}.data.download
 
 # Setup experiments
-python -m NAME.data.preprocess
-python -m NAME.partition
+python -m {{cookiecutter.project_slug}}.data.preprocess
+python -m {{cookiecutter.project_slug}}.partition
 
 # Train and evaluate
-accelerate launch -m NAME.train --config config/config.py
+accelerate launch -m {{cookiecutter.project_slug}}.train --config config/config.py
