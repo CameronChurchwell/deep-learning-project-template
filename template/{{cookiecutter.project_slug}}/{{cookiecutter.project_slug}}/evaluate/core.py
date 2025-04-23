@@ -40,7 +40,7 @@ def datasets(
         # Iterate over test set
         for batch in torchutil.iterator(
             {{cookiecutter.project_slug}}.data.loader(dataset, 'test'),
-            f'Evaluating {{{cookiecutter.project_slug}}.CONFIG} on {dataset}'
+            f'Evaluating {{"{" ~ cookiecutter.project_slug}}.CONFIG} on {dataset}'
         ):
 
             # Reset file metrics

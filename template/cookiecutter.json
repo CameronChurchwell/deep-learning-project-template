@@ -4,5 +4,6 @@
     "github_repo_name": "{{ cookiecutter.project_slug }}",
     "author_name": "Cameron Churchwell",
     "author_email": "cameronchurchwell@icloud.com",
-    "audio": ["yes", "no"]
+    "audio": ["yes", "no"],
+    "torch_ops": ["yes", "no", "dormant"],
 }

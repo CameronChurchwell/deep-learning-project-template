@@ -78,7 +78,7 @@ def train(datasets, directory={{cookiecutter.project_slug}}.RUNS_DIR / {{cookiec
     # Setup progress bar
     progress = torchutil.iterator(
         range(step, {{cookiecutter.project_slug}}.STEPS),
-        f'Training {{{cookiecutter.project_slug}}.CONFIG}',
+        f'Training {{"{" ~ cookiecutter.project_slug}}.CONFIG}',
         step,
         {{cookiecutter.project_slug}}.STEPS)
 
