@@ -9,10 +9,6 @@ import {{cookiecutter.project_slug}}
 # Download Utilities
 ###############################################################################
 
-def partition(dataset):
-    """Load partitions for dataset"""
-    with open({{cookiecutter.project_slug}}.PARTITION_DIR / f'{dataset}.json') as file:
-        return json.load(file)
 
 def audio(file):
     """Load audio from disk"""

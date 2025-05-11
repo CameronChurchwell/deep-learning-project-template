@@ -8,7 +8,7 @@ python -m {{cookiecutter.project_slug}}.data.download
 
 # Setup experiments
 python -m {{cookiecutter.project_slug}}.data.preprocess
-python -m {{cookiecutter.project_slug}}.partition
+python -m {{cookiecutter.project_slug}}.data.partition
 
 # Train and evaluate
 accelerate launch -m {{cookiecutter.project_slug}}.train --config config/config.py

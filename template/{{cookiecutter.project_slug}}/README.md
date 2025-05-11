@@ -172,7 +172,7 @@ Preprocess datasets
 
 ### Partition
 
-`python -m {{cookiecutter.project_slug}}.partition`
+`python -m {{cookiecutter.project_slug}}.data.partition`
 
 Partition datasets. Partitions are saved in `{{cookiecutter.project_slug}}/assets/partitions`.
 

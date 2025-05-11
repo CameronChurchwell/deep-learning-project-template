@@ -14,4 +14,4 @@ def parse_args():
     return parser.parse_args()
 
 
-{{cookiecutter.project_slug}}.partition.datasets(**vars(parse_args()))
+{{cookiecutter.project_slug}}.data.partition.datasets(**vars(parse_args()))
