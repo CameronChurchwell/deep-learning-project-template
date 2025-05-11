@@ -19,4 +19,4 @@ def parse_args():
     return parser.parse_args()
 
 
-{{cookiecutter.project_slug}}.preprocess.datasets(**vars(parse_args()))
+{{cookiecutter.project_slug}}.data.preprocess.datasets(**vars(parse_args()))
