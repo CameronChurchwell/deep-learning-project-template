@@ -5,5 +5,5 @@
     "author_name": "Cameron Churchwell",
     "author_email": "cameronchurchwell@icloud.com",
     "audio": ["yes", "no"],
-    "torch_ops": ["yes", "no", "dormant"],
+    "torch_ops": ["yes", "no", "dormant"]
 }

@@ -12,4 +12,4 @@ shutil.move(source_dir, temp_source_dir)
 for p in temp_source_dir.iterdir():
     shutil.move(p, target_dir / p.name)
 
-os.unlink(temp_source_dir)
+os.rmdir(temp_source_dir)
