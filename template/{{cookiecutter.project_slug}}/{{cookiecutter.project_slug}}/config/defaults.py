@@ -40,31 +40,46 @@ ROOT_DIR = Path(__file__).parent.parent.parent
 @yapecs.ComputedProperty(compute_once=True)
 def ASSETS_DIR():
     import {{cookiecutter.project_slug}}
-    return {{cookiecutter.project_slug}}.ROOT_DIR / '{{cookiecutter.project_slug}}' / 'assets'
+    return Path(os.getenv(
+        '{{ cookiecutter.project_slug.upper() }}_ASSETS_DIR',
+        {{cookiecutter.project_slug}}.ROOT_DIR / '{{cookiecutter.project_slug}}' / 'assets'
+    ))
 
 # Location of preprocessed features
 @yapecs.ComputedProperty(compute_once=True)
 def CACHE_DIR():
     import {{cookiecutter.project_slug}}
-    return {{cookiecutter.project_slug}}.ROOT_DIR / 'data' / 'cache'
+    return Path(os.getenv(
+        '{{ cookiecutter.project_slug.upper() }}_CACHE_DIR',
+        {{cookiecutter.project_slug}}.ROOT_DIR / 'data' / 'cache'
+    ))
 
 # Location of datasets on disk
 @yapecs.ComputedProperty(compute_once=True)
 def DATA_DIR():
     import {{cookiecutter.project_slug}}
-    return {{cookiecutter.project_slug}}.ROOT_DIR / 'data' / 'datasets'
+    return Path(os.getenv(
+        '{{ cookiecutter.project_slug.upper() }}_DATA_DIR',
+        {{cookiecutter.project_slug}}.ROOT_DIR / 'data' / 'datasets'
+    ))
 
 # Location to save evaluation artifacts
 @yapecs.ComputedProperty(compute_once=True)
 def EVAL_DIR():
     import {{cookiecutter.project_slug}}
-    return {{cookiecutter.project_slug}}.ROOT_DIR / 'eval'
+    return Path(os.getenv(
+        '{{ cookiecutter.project_slug.upper() }}_EVAL_DIR',
+        {{cookiecutter.project_slug}}.ROOT_DIR / 'eval'
+    ))
 
 # Location to save training and adaptation artifacts
 @yapecs.ComputedProperty(compute_once=True)
 def RUNS_DIR():
     import {{cookiecutter.project_slug}}
-    return {{cookiecutter.project_slug}}.ROOT_DIR / 'runs'
+    return Path(os.getenv(
+        '{{ cookiecutter.project_slug.upper() }}_RUNS_DIR', 
+        {{cookiecutter.project_slug}}.ROOT_DIR / 'runs'
+    ))
 
 
 ###############################################################################
