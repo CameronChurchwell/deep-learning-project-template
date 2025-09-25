@@ -27,7 +27,7 @@ keywords = []
 
 [project.urls]
 Homepage = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.github_repo_name}}"
-Issues = "https://github.com/USERNAME/NAME/issues"
+Issues = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.github_repo_name}}/issues"
 
 # [project.optional-dependencies]
 # evaluate = [
