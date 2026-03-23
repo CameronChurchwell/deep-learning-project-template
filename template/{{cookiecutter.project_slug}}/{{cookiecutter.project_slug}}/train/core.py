@@ -190,7 +190,7 @@ def evaluate(
     directory,
     step,
     model,
-    accelerator,
+    # accelerator,
     condition,
     loader,
     evaluation_steps=None
