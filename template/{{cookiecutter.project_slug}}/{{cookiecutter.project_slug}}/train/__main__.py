@@ -1,5 +1,6 @@
 import yapecs
 import shutil
+import argparse
 from pathlib import Path
 
 import {{cookiecutter.project_slug}}
@@ -25,7 +26,7 @@ def main(config, dataset):
 
 def parse_args():
     """Parse command-line arguments"""
-    parser = yapecs.ArgumentParser(description='Train a model')
+    parser = argparse.ArgumentParser(description='Train a model')
     parser.add_argument(
         '--config',
         type=Path,
