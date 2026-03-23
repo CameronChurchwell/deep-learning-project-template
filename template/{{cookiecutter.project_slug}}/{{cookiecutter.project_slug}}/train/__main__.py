@@ -14,7 +14,7 @@ import {{cookiecutter.project_slug}}
 def main(config, dataset):
     """Train from configuration"""
     # Create output directory
-    directory = {{cookiecutter.project_slug}}.RUNS_DIR / config.stem
+    directory = {{cookiecutter.project_slug}}.RUNS_DIR / {{cookiecutter.project_slug}}.CONFIG
     directory.mkdir(parents=True, exist_ok=True)
 
     # Save configuration
